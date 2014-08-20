@@ -16,20 +16,50 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## API
 
+To interface with the memory specification,
+
+``` javascript
+var metrics = require( 'doc-metrix-memory' );
+```
+
+The interface has the following methods...
 
 
+#### metrics.list()
 
-## Usage
+Lists all metrics included in the specification.
 
+``` javascript
+metrics.list();
+// returns an array of metric names
+```
 
+#### metrics.exist( name )
 
+Checks whether a metric having the provided `name` is included in the specification.
+
+``` javascript
+metrics.exist( 'mem.utilization' );
+// returns true
+
+metrics.exist( 'cpu.utilization' );
+// returns false
+```
+
+#### metrics.get( name )
+
+Returns a metric's specification. If a metric does not have a specification, returns `null`.
+
+``` javascript
+metrics.get( 'mem.utilization' );
+// returns [object]
+
+metrics.get( 'cpu.utilization' );
+// returns null
+```
 
 
 ## Examples
-
-``` javascript
-var lib = require( 'doc-metrix-memory' );
-```
 
 To run the example code from the top-level application directory,
 
