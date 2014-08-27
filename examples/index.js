@@ -85,6 +85,14 @@
 	*	]
 	*/
 
+	// Get a list of metric specifications by device name:
+	console.log( metrics.getDevice( 'disk' ) );
+
+	/**
+	* Returns:
+	*	[object]
+	*/
+
 })();
 
 
