@@ -50,7 +50,7 @@
 	*/
 
 	// Check if a metric exists:
-	console.log( metrics.exists( 'mem.swapSpaceUtilization' ) );
+	console.log( metrics.exists( 'mem.swapspaceutilization' ) );
 
 	/**
 	* Returns:
@@ -65,7 +65,7 @@
 	*/
 
 	// Get a metric specification:
-	console.log( metrics.get( 'mem.swapSpaceUtilization' ) );
+	console.log( metrics.get( 'mem.swapspaceutilization' ) );
 
 	/**
 	* Returns:
@@ -86,7 +86,7 @@
 	*/
 
 	// Get a list of metric specifications by device name:
-	console.log( metrics.getDevice( 'disk' ) );
+	console.log( metrics.getDevice( 'DISK' ) );
 
 	/**
 	* Returns:
