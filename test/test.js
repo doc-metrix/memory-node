@@ -3,7 +3,6 @@
 
 var // Expectation library:
 	chai = require( 'chai' ),
-	_ = require( 'underscore' ),
 
 	// Metrics specification:
 	METRICS = require( './../specs/memory.json' ),
@@ -14,14 +13,25 @@ var // Expectation library:
 	// Metric specifications by device:
 	DEVICES = {};
 
-_.each( METRICS, function( metric, metricName ) {
-    if ( metric.device !== null ) {
-        _.each( metric.device, function( device ) {
-            DEVICES[ device ] = ( DEVICES[ device ] ? DEVICES[ device ] : {} );
-            DEVICES[ device ] [ metricName ] = metric;
-        } );
+var metricName,
+	deviceName,
+	i;
+
+for ( metricName in METRICS ) {
+    if ( METRICS[ metricName ].device !== null ) {
+        for ( i = 0; i < METRICS[ metricName ].device.length; i++ ) {
+            DEVICES[ METRICS[ metricName ].device[i] ] = ( DEVICES[ METRICS[ metricName ].device[i] ] ? DEVICES[ METRICS[ metricName ].device[i] ] : {} );
+        }
     }
-} );
+}
+for ( deviceName in DEVICES ) {
+    for ( metricName in METRICS ) {
+        if ( METRICS[ metricName ].device.indexOf( deviceName ) !== -1 ) {
+            DEVICES[ deviceName ][ metricName ] = METRICS[ metricName ];
+        }
+    }
+}
+
 
 // VARIABLES //
 
