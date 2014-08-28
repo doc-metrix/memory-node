@@ -147,12 +147,6 @@ describe( 'doc-metrix-memory', function tests() {
 
 	});
 
-	describe( 'source', function tests() {
-
-		it( 'should do something' );
-
-	});
-
 	describe( 'listDevices', function tests() {
 
 		it( 'should provide a method to list all devices associated with the metrics', function test() {
@@ -165,10 +159,10 @@ describe( 'doc-metrix-memory', function tests() {
 
 	});
 
-	describe( 'getDevice', function tests() {
+	describe( 'device', function tests() {
 
 		it( 'should provide a method to get metric specifications associated with a device', function test() {
-			expect( metrics.getDevice ).to.be.a( 'function' );
+			expect( metrics.device ).to.be.a( 'function' );
 		});
 
 		it( 'should not allow a non-undefined or non-string metric name', function test() {
@@ -188,25 +182,25 @@ describe( 'doc-metrix-memory', function tests() {
 
 			function badValue( value ) {
 				return function() {
-					metrics.getDevice( value );
+					metrics.device( value );
 				};
 			}
 		});
 
 		it( 'should return null for a device which does not have any associated metric specification', function test() {
-			assert.isNull( metrics.getDevice( 'no such device' ) );
+			assert.isNull( metrics.device( 'no such device' ) );
 		});
 
 		it( 'should return metric specification(s) associated with the device', function test() {
-			assert.deepEqual( metrics.getDevice( DEVICENAMES[0] ), DEVICES[ DEVICENAMES[0] ] );
+			assert.deepEqual( metrics.device( DEVICENAMES[0] ), DEVICES[ DEVICENAMES[0] ] );
 		});
 
 		it( 'should return metric specifications associated with all devices if called without a device name', function test() {
-			assert.deepEqual( metrics.getDevice(), DEVICES );
+			assert.deepEqual( metrics.device(), DEVICES );
 		});
 
 		it( 'should return metric specification(s) associated with the device regardless of input device case sensitivity', function test() {
-			assert.deepEqual( metrics.getDevice( DEVICENAMES[0].toUpperCase() ), DEVICES[ DEVICENAMES[0] ] );
+			assert.deepEqual( metrics.device( DEVICENAMES[0].toUpperCase() ), DEVICES[ DEVICENAMES[0] ] );
 		});
 
 	});
