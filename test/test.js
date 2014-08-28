@@ -8,7 +8,10 @@ var // Expectation library:
 	METRICS = require( './../specs/memory.json' ),
 
 	// Module to be tested:
-	metrics = require( './../lib' );
+	metrics = require( './../lib' ),
+
+	// Metric specifications by device:
+	DEVICES = {};
 
 
 // VARIABLES //
@@ -24,7 +27,8 @@ describe( 'doc-metrix-memory', function tests() {
 
 	// SETUP //
 
-	var NAMES = Object.keys( METRICS );
+	var NAMES = Object.keys( METRICS ),
+		DEVICENAMES = Object.keys( DEVICES );
 
 
 	// TESTS //
@@ -82,6 +86,10 @@ describe( 'doc-metrix-memory', function tests() {
 			assert.ok( metrics.exists( NAMES[0] ), true );
 		});
 
+		it( 'should return true for a metric which has a specification regardless of input name case sensitivity', function test() {
+			assert.ok( metrics.exists( NAMES[0].toUpperCase() ), true );
+		});
+
 	});
 
 	describe( 'get', function tests() {
@@ -90,14 +98,13 @@ describe( 'doc-metrix-memory', function tests() {
 			expect( metrics.get ).to.be.a( 'function' );
 		});
 
-		it( 'should not allow a non-string metric name', function test() {
+		it( 'should not allow a non-undefined or non-string metric name', function test() {
 			var values = [
 					5,
 					[],
 					{},
 					true,
 					null,
-					undefined,
 					NaN,
 					function(){}
 				];
@@ -121,11 +128,31 @@ describe( 'doc-metrix-memory', function tests() {
 			assert.deepEqual( metrics.get( NAMES[0] ), METRICS[ NAMES[0] ] );
 		});
 
+		it( 'should return all metric specifications if called without a metric name', function test() {
+			assert.deepEqual( metrics.get(), METRICS );
+		});
+
+		it( 'should return a metric specification regardless of input name case sensitivity', function test() {
+			assert.deepEqual( metrics.get( NAMES[0].toUpperCase() ), METRICS[ NAMES[0] ] );
+		});
+
 	});
 
 	describe( 'source', function tests() {
 
 		it( 'should do something' );
+
+	});
+
+	xdescribe( 'listDevices', function tests() {
+
+		it( 'should provide a method to list all devices associated with the metrics', function test() {
+			expect( metrics.listDevices ).to.be.a( 'function' );
+		});
+
+		it( 'should list all devices associated with the metrics', function test() {
+			assert.deepEqual( metrics.listDevices(), DEVICENAMES );
+		});
 
 	});
 
