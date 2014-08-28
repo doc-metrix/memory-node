@@ -57,13 +57,8 @@
 	*/
 	function getSpecs() {
 		var keys = Object.keys( resources );
-		try {
+		if ( !fs.existsSync( filepath ) ) {
 			fs.mkdirSync( filepath );
-		} catch ( err ) {
-			// Ignores the error that is thrown when the directory already exists.
-			if ( err.errno !== 47 & err.code !== 'EEXIST' ) {
-				throw new Error( err );
-			}
 		}
 		for ( var i = 0; i < keys.length; i++ ) {
 			request({
