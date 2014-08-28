@@ -3,6 +3,7 @@
 
 var // Expectation library:
 	chai = require( 'chai' ),
+	_ = require( 'underscore' ),
 
 	// Metrics specification:
 	METRICS = require( './../specs/memory.json' ),
@@ -13,6 +14,14 @@ var // Expectation library:
 	// Metric specifications by device:
 	DEVICES = {};
 
+_.each( METRICS, function( metric, metricName ) {
+    if ( metric.device !== null ) {
+        _.each( metric.device, function( device ) {
+            DEVICES[ device ] = ( DEVICES[ device ] ? DEVICES[ device ] : {} );
+            DEVICES[ device ] [ metricName ] = metric;
+        } );
+    }
+} );
 
 // VARIABLES //
 
@@ -79,7 +88,7 @@ describe( 'doc-metrix-memory', function tests() {
 		});
 
 		it( 'should return false for a metric which does not have a specification', function test() {
-			assert.notOk( metrics.exists( 'cpu.utilization' ) );
+			assert.notOk( metrics.exists( 'invalid.classification.utilization' ) );
 		});
 
 		it( 'should return true for a metric which has a specification', function test() {
@@ -121,7 +130,7 @@ describe( 'doc-metrix-memory', function tests() {
 		});
 
 		it( 'should return null for a metric which does not have a specification', function test() {
-			assert.isNull( metrics.get( 'cpu.utilization' ) );
+			assert.isNull( metrics.get( 'invalid.classification.utilization' ) );
 		});
 
 		it( 'should return a metric specification', function test() {
@@ -144,7 +153,7 @@ describe( 'doc-metrix-memory', function tests() {
 
 	});
 
-	xdescribe( 'listDevices', function tests() {
+	describe( 'listDevices', function tests() {
 
 		it( 'should provide a method to list all devices associated with the metrics', function test() {
 			expect( metrics.listDevices ).to.be.a( 'function' );
@@ -152,6 +161,52 @@ describe( 'doc-metrix-memory', function tests() {
 
 		it( 'should list all devices associated with the metrics', function test() {
 			assert.deepEqual( metrics.listDevices(), DEVICENAMES );
+		});
+
+	});
+
+	describe( 'getDevice', function tests() {
+
+		it( 'should provide a method to get metric specifications associated with a device', function test() {
+			expect( metrics.getDevice ).to.be.a( 'function' );
+		});
+
+		it( 'should not allow a non-undefined or non-string metric name', function test() {
+			var values = [
+					5,
+					[],
+					{},
+					true,
+					null,
+					NaN,
+					function(){}
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					metrics.getDevice( value );
+				};
+			}
+		});
+
+		it( 'should return null for a device which does not have any associated metric specification', function test() {
+			assert.isNull( metrics.getDevice( 'no such device' ) );
+		});
+
+		it( 'should return metric specification(s) associated with the device', function test() {
+			assert.deepEqual( metrics.getDevice( DEVICENAMES[0] ), DEVICES[ DEVICENAMES[0] ] );
+		});
+
+		it( 'should return metric specifications associated with all devices if called without a device name', function test() {
+			assert.deepEqual( metrics.getDevice(), DEVICES );
+		});
+
+		it( 'should return metric specification(s) associated with the device regardless of input device case sensitivity', function test() {
+			assert.deepEqual( metrics.getDevice( DEVICENAMES[0].toUpperCase() ), DEVICES[ DEVICENAMES[0] ] );
 		});
 
 	});
