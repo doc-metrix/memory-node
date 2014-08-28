@@ -107,12 +107,13 @@ describe( 'doc-metrix-memory', function tests() {
 			expect( metrics.get ).to.be.a( 'function' );
 		});
 
-		it( 'should not allow a non-undefined or non-string metric name', function test() {
+		it( 'should not allow a non-string metric name', function test() {
 			var values = [
 					5,
 					[],
 					{},
 					true,
+					undefined,
 					null,
 					NaN,
 					function(){}
@@ -165,12 +166,13 @@ describe( 'doc-metrix-memory', function tests() {
 			expect( metrics.device ).to.be.a( 'function' );
 		});
 
-		it( 'should not allow a non-undefined or non-string metric name', function test() {
+		it( 'should not allow a non-string metric name', function test() {
 			var values = [
 					5,
 					[],
 					{},
 					true,
+					undefined,
 					null,
 					NaN,
 					function(){}
