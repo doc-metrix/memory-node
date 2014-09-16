@@ -57,9 +57,9 @@
 	*/
 	function getSpecs() {
 		var keys = Object.keys( resources );
-
-		fs.mkdirSync( filepath );
-
+		if ( !fs.existsSync( filepath ) ) {
+			fs.mkdirSync( filepath );
+		}
 		for ( var i = 0; i < keys.length; i++ ) {
 			request({
 				'method': 'GET',
