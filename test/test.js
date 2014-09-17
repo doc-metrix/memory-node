@@ -176,7 +176,6 @@ describe( 'doc-metrix-memory', function tests() {
 			assert.deepEqual( metrics.mget( /.+/ ). METRICS );
 		});
 
-
 	});
 
 	describe( 'dlist', function tests() {
