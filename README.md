@@ -75,15 +75,15 @@ metrics.dlist();
 // returns an array of device names
 ```
 
-#### metrics.dexist( name )
+#### metrics.dexists( name )
 
 Checks whether a device having the provided `name` is known to have associated metric specifications.
 
 ``` javascript
-metrics.dexist( 'ram' );
+metrics.dexists( 'ram' );
 // returns true
 
-metrics.dexist( 'eth0' );
+metrics.dexists( 'eth0' );
 // returns false
 ```
 
