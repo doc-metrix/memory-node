@@ -34,15 +34,15 @@ metrics.mlist();
 // returns an array of metric names
 ```
 
-#### metrics.mexist( name )
+#### metrics.mexists( name )
 
 Checks whether a metric having the provided `name` is included in the specification.
 
 ``` javascript
-metrics.mexist( 'mem.swapSpaceUtilization' );
+metrics.mexists( 'mem.swapSpaceUtilization' );
 // returns true
 
-metrics.mexist( 'cpu.utilization' );
+metrics.mexists( 'cpu.utilization' );
 // returns false
 ```
 
