@@ -2,7 +2,7 @@ doc-metrix-memory
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-> Provides an API for doc-metrix memory performance metrics.
+> Provides an API for doc-metrix [memory](https://github.com/doc-metrix/memory) performance metrics.
 
 
 ## Installation
@@ -16,7 +16,7 @@ For use in the browser, use [browserify](https://github.com/substack/node-browse
 
 ## Usage
 
-To interface with the memory specification,
+To interface with the memory [specification](https://github.com/doc-metrix/memory),
 
 ``` javascript
 var metrics = require( 'doc-metrix-memory' );
