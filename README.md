@@ -117,6 +117,25 @@ $ node ./examples/index.js
 ```
 
 
+## Notes
+
+After running the following commands,
+
+``` bash
+$ npm install
+$ npm update
+```
+
+this package, when a dependency, will attempt an HTTP request to retrieve the latest specification from [Github](https://github.com/doc-metrix/memory).
+
+During development, run the following command to retrieve the latest specification
+
+``` bash
+$ npm run specs
+```
+
+
+
 ## Tests
 
 ### Unit
