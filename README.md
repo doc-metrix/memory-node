@@ -126,7 +126,7 @@ $ npm install
 $ npm update
 ```
 
-this package, when a dependency, will attempt an HTTP request to retrieve the latest specification from [Github](https://github.com/doc-metrix/memory).
+this package, when used as a dependency, will attempt an HTTP request to retrieve the latest specification from [Github](https://github.com/doc-metrix/memory).
 
 During development, run the following command to retrieve the latest specification
 
