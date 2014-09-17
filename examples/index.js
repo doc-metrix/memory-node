@@ -37,7 +37,7 @@
 	// SCRIPT //
 
 	// Get the list of metrics:
-	console.log( metrics.list() );
+	console.log( metrics.mlist() );
 
 	/**
 	* Returns:
@@ -50,14 +50,14 @@
 	*/
 
 	// Check if a metric exists:
-	console.log( metrics.exists( 'mem.swapspaceutilization' ) );
+	console.log( metrics.mexists( 'mem.swapSpaceUtilization' ) );
 
 	/**
 	* Returns:
 	*	true
 	*/
 
-	console.log( metrics.exists( 'cpu.utilization' ) );
+	console.log( metrics.mexists( 'cpu.utilization' ) );
 
 	/**
 	* Returns:
@@ -65,15 +65,19 @@
 	*/
 
 	// Get a metric specification:
-	console.log( metrics.get( 'mem.swapspaceutilization' ) );
+	console.log( metrics.mget( 'mem.swapSpaceUtilization' ) );
 
 	/**
 	* Returns:
-	*	[object]
+	*	{
+			"displayName": "Swap Space Utilization",
+			"units": "utilization",
+			...
+		}
 	*/
 
 	// Get the list of devices:
-	console.log( metrics.listDevices() );
+	console.log( metrics.dlist() );
 
 	/**
 	* Returns:
@@ -85,12 +89,39 @@
 	*	]
 	*/
 
-	// Get a list of metric specifications by device name:
-	console.log( metrics.getDevice( 'DISK' ) );
+	// Check if a device is known to have associated metrics:
+	console.log( metrics.dexists( 'ram' ) );
 
 	/**
 	* Returns:
-	*	[object]
+	*	true
+	*/
+
+	console.log( metrics.dexists( 'eth0' ) );
+
+	/**
+	* Returns:
+	*	false
+	*/
+
+	// Get a list of metric specifications arranged by device name:
+	console.log( metrics.dget( 'DISK' ) );
+
+	/**
+	* Returns:
+	*	{
+			"metric0": {
+				"displayName": "...",
+				"units": "...",
+				...
+			},
+			"metric1": {
+				"displayName": "...",
+				"units": "...",
+				...
+			},
+			...
+		}
 	*/
 
 })();

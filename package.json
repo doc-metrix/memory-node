@@ -10,13 +10,17 @@
     {
       "name": "Athan Reines",
       "email": "kgryte@gmail.com"
+    },
+    {
+      "name": "Nick Wei",
+      "email": "nick@nodeprime.com"
     }
   ],
   "scripts": {
     "postinstall": "./scripts/specs.js",
     "postupdate": "./scripts/specs.js",
-    "get-specs": "./scripts/specs.js",
-    "test": "./node_modules/.bin/mocha -R nyan",
+    "specs": "./scripts/specs.js",
+    "test": "./node_modules/.bin/mocha",
     "test-cov": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coverage -- -R spec",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --dir ./reports/coveralls/coverage --report lcovonly -- -R spec && cat ./reports/coveralls/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./reports/coveralls"
   },
@@ -26,7 +30,13 @@
     "url": "git://github.com/doc-metrix/memory-node.git"
   },
   "keywords": [
-    "doc-metrix"
+    "doc-metrix",
+    "performance metrics",
+    "metrics",
+    "documentation",
+    "specification",
+    "spec",
+    "memory"
   ],
   "bugs": {
     "url": "https://github.com/doc-metrix/memory-node/issues"

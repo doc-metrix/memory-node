@@ -2,7 +2,7 @@ doc-metrix-memory
 ===
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
 
-Provides an API for doc-metrix memory performance metrics.
+> Provides an API for doc-metrix memory performance metrics.
 
 
 ## Installation
@@ -14,7 +14,7 @@ $ npm install doc-metrix-memory
 For use in the browser, use [browserify](https://github.com/substack/node-browserify).
 
 
-## API
+## Usage
 
 To interface with the memory specification,
 
@@ -25,38 +25,87 @@ var metrics = require( 'doc-metrix-memory' );
 The interface has the following methods...
 
 
-#### metrics.list()
+#### metrics.mlist()
 
 Lists all metrics included in the specification.
 
 ``` javascript
-metrics.list();
+metrics.mlist();
 // returns an array of metric names
 ```
 
-#### metrics.exist( name )
+#### metrics.mexist( name )
 
 Checks whether a metric having the provided `name` is included in the specification.
 
 ``` javascript
-metrics.exist( 'mem.utilization' );
+metrics.mexist( 'mem.swapSpaceUtilization' );
 // returns true
 
-metrics.exist( 'cpu.utilization' );
+metrics.mexist( 'cpu.utilization' );
 // returns false
 ```
 
-#### metrics.get( name )
+#### metrics.mget( [name] )
 
-Returns a metric's specification. If a metric does not have a specification, returns `null`.
+Returns metric specifications. If a metric does not have a specification, returns `null`. To return a single specification,
 
 ``` javascript
-metrics.get( 'mem.utilization' );
-// returns [object]
+metrics.mget( 'mem.swapSpaceUtilization' );
+// returns {...}
 
-metrics.get( 'cpu.utilization' );
+metrics.mget( 'cpu.utilization' );
 // returns null
 ```
+
+To return all metric specifications,
+
+``` javascript
+metrics.mget();
+// returns {"metric1":{...},"metric2":{...},...}
+```
+
+
+#### metrics.dlist()
+
+Lists all devices known to have associated metric specifications.
+
+``` javascript
+metrics.dlist();
+// returns an array of device names
+```
+
+#### metrics.dexist( name )
+
+Checks whether a device having the provided `name` is known to have associated metric specifications.
+
+``` javascript
+metrics.dexist( 'ram' );
+// returns true
+
+metrics.dexist( 'eth0' );
+// returns false
+```
+
+#### metrics.dget( [name] )
+
+Returns specifications associated with devices. If a device does not have associated specifications, returns `null`. To return a single device's specifications,
+
+``` javascript
+metrics.dget( 'ram' );
+// returns {...}
+
+metrics.dget( 'eth0' );
+// returns null
+```
+
+To return all devices and their associated specifications,
+
+``` javascript
+metrics.dget();
+// returns {"device0":{...},"device1":{...},...}
+```
+
 
 
 ## Examples
@@ -104,7 +153,7 @@ $ open reports/coverage/lcov-report/index.html
 ---
 ## Copyright
 
-Copyright &copy; 2014. Athan Reines.
+Copyright &copy; 2014. [NodePrime](http://nodeprime.com).
 
 
 [npm-image]: http://img.shields.io/npm/v/doc-metrix-memory.svg
