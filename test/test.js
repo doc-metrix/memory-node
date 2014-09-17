@@ -172,6 +172,11 @@ describe( 'doc-metrix-memory', function tests() {
 			assert.isNull( metrics.mget( /NOTHING_MATCHES_FILTER/i ) );
 		});
 
+		it( 'should return all metrics when provided a permissive filter', function test() {
+			assert.deepEqual( metrics.mget( /.+/ ). METRICS );
+		});
+
+
 	});
 
 	describe( 'dlist', function tests() {
