@@ -165,11 +165,11 @@ Copyright &copy; 2014. [NodePrime](http://nodeprime.com).
 [coveralls-image]: https://img.shields.io/coveralls/doc-metrix/memory-node/master.svg
 [coveralls-url]: https://coveralls.io/r/doc-metrix/memory-node?branch=master
 
-[dependencies-image]: http://img.shields.io/david/doc-metrix/doc-metrix-memory.svg
-[dependencies-url]: https://david-dm.org/doc-metrix/doc-metrix-memory
+[dependencies-image]: http://img.shields.io/david/doc-metrix/memory-node.svg
+[dependencies-url]: https://david-dm.org/doc-metrix/memory-node
 
-[dev-dependencies-image]: http://img.shields.io/david/dev/doc-metrix/doc-metrix-memory.svg
-[dev-dependencies-url]: https://david-dm.org/dev/doc-metrix/doc-metrix-memory
+[dev-dependencies-image]: http://img.shields.io/david/dev/doc-metrix/memory-node.svg
+[dev-dependencies-url]: https://david-dm.org/dev/doc-metrix/memory-node
 
 [github-issues-image]: http://img.shields.io/github/issues/doc-metrix/memory-node.svg
 [github-issues-url]: https://github.com/doc-metrix/memory-node/issues
