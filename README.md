@@ -25,6 +25,11 @@ var metrics = require( 'doc-metrix-memory' );
 The interface has the following methods...
 
 
+### Metrics
+
+Metric centric methods...
+
+
 #### metrics.mexists( name )
 
 Checks whether a metric having the provided `name` is included in the specification.
@@ -52,7 +57,7 @@ metrics.mlist();
 
 #### metrics.mfilter( regexp )
 
-Lists all metrics satisfying a regular express filter.
+Lists all metrics satisfying a regular expression filter.
 
 ``` javascript
 metrics.mfilter( /active/i );
@@ -89,7 +94,12 @@ metrics.mget();
 
 Note: when the filter is a `string`, the method is __not__ case sensitive.
 
-Note: when using regular expression filters, the method __is__ case sensitive. If case does not matter, ignore case `/i`;
+Note: when the filter is a regular expression, the method __is__ case sensitive. If case does not matter, ignore case `/i`;
+
+
+### Devices
+
+Device centric methods...
 
 
 #### metrics.dexists( name )
