@@ -40,6 +40,42 @@ describe( 'doc-metrix-memory', function tests() {
 
 	});
 
+	describe( 'mfilter', function tests() {
+
+		it( 'should provide a method to return a filtered list of documented metrics', function test() {
+			expect( metrics.mfilter ).to.be.a( 'function' );
+		});
+
+		it( 'should not allow a non-regular expression filter', function test() {
+			var values = [
+					'5',
+					5,
+					[],
+					{},
+					true,
+					null,
+					undefined,
+					NaN,
+					function(){}
+				];
+
+			for ( var i = 0; i < values.length; i++ ) {
+				expect( badValue( values[i] ) ).to.throw( Error );
+			}
+
+			function badValue( value ) {
+				return function() {
+					metrics.mfilter( value );
+				};
+			}
+		});
+
+		it( 'should filter documented metric names', function test() {
+			assert.isArray( metrics.mfilter( /Active/i ) );
+		});
+
+	});
+
 	describe( 'mexists', function tests() {
 
 		it( 'should provide a method to check the existence of a metric specification', function test() {
@@ -89,7 +125,7 @@ describe( 'doc-metrix-memory', function tests() {
 			expect( metrics.mget ).to.be.a( 'function' );
 		});
 
-		it( 'should not allow a non-string metric name', function test() {
+		it( 'should not allow a non-string or non-regular expression metric filter', function test() {
 			var values = [
 					5,
 					[],
@@ -128,6 +164,14 @@ describe( 'doc-metrix-memory', function tests() {
 			assert.deepEqual( metrics.mget( NAMES[ 0 ].toUpperCase() ), METRICS[ NAMES[ 0 ] ] );
 		});
 
+		it( 'should return a filtered list of metric specifications', function test() {
+			assert.isObject( metrics.mget( /Active/i ) );
+		});
+
+		it( 'should return null if no metrics match a provided filter', function test() {
+			assert.isNull( metrics.mget( /NOTHING_MATCHES_FILTER/i ) );
+		});
+
 	});
 
 	describe( 'dlist', function tests() {
@@ -139,7 +183,7 @@ describe( 'doc-metrix-memory', function tests() {
 		it( 'should list all devices associated with metrics', function test() {
 			var list = metrics.dlist();
 			assert.isArray( list );
-			assert.ok( list.indexOf( 'RAM' ) !== -1 );
+			assert.ok( list.indexOf( 'ram' ) !== -1 );
 		});
 
 	});
@@ -236,6 +280,11 @@ describe( 'doc-metrix-memory', function tests() {
 			var obj = metrics.dget( 'rAm' );
 			assert.isObject( obj );
 			assert.ok( Object.keys( obj ).length );
+		});
+
+		it( 'should return null if no device matches a provided filter', function test() {
+			var obj = metrics.dget( 'UNKNOWN_DEVICE_FILTER' );
+			assert.isNull( obj );
 		});
 
 	});

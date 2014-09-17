@@ -36,19 +36,6 @@
 
 	// SCRIPT //
 
-	// Get the list of metrics:
-	console.log( metrics.mlist() );
-
-	/**
-	* Returns:
-	*	[
-	*		'metric0',
-	*		'metric1',
-	*		...
-	*		'metricN'
-	*	]
-	*/
-
 	// Check if a metric exists:
 	console.log( metrics.mexists( 'mem.swapSpaceUtilization' ) );
 
@@ -64,6 +51,32 @@
 	*	false
 	*/
 
+	// Get the list of metrics:
+	console.log( metrics.mlist() );
+
+	/**
+	* Returns:
+	*	[
+	*		'metric0',
+	*		'metric1',
+	*		...
+	*		'metricN'
+	*	]
+	*/
+
+	// Filter the list of metrics:
+	console.log( metrics.mfilter( /Active/i ) );
+
+	/**
+	* Returns:
+	*	[
+	*		'metric0',
+	*		'metric1',
+	*		...
+	*		'metricM'
+	*	]
+	*/
+
 	// Get a metric specification:
 	console.log( metrics.mget( 'mem.swapSpaceUtilization' ) );
 
@@ -76,17 +89,24 @@
 		}
 	*/
 
-	// Get the list of devices:
-	console.log( metrics.dlist() );
+	// Get metric specifications matching a filter:
+	console.log( metrics.mget( /Active/i ) );
 
 	/**
 	* Returns:
-	*	[
-	*		'device0',
-	*		'device1',
-	*		...
-	*		'deviceN'
-	*	]
+	*	{
+			"metric0": {
+				"displayName": "...",
+				"units": "...",
+				...
+			},
+			...
+			"metricM": {
+				"displayName": "...",
+				"units": "...",
+				...
+			}
+		}
 	*/
 
 	// Check if a device is known to have associated metrics:
@@ -102,6 +122,19 @@
 	/**
 	* Returns:
 	*	false
+	*/
+
+	// Get the list of devices:
+	console.log( metrics.dlist() );
+
+	/**
+	* Returns:
+	*	[
+	*		'device0',
+	*		'device1',
+	*		...
+	*		'deviceN'
+	*	]
 	*/
 
 	// Get a list of metric specifications arranged by device name:

@@ -25,15 +25,6 @@ var metrics = require( 'doc-metrix-memory' );
 The interface has the following methods...
 
 
-#### metrics.mlist()
-
-Lists all metrics included in the specification.
-
-``` javascript
-metrics.mlist();
-// returns an array of metric names
-```
-
 #### metrics.mexists( name )
 
 Checks whether a metric having the provided `name` is included in the specification.
@@ -46,9 +37,30 @@ metrics.mexists( 'cpu.utilization' );
 // returns false
 ```
 
-#### metrics.mget( [name] )
+#### metrics.mlist()
 
-Returns metric specifications. If a metric does not have a specification, returns `null`. To return a single specification,
+Lists all metrics included in the specification.
+
+``` javascript
+metrics.mlist();
+// returns an array of metric names
+```
+
+
+#### metrics.mfilter( regexp )
+
+Lists all metrics satisfying a regular express filter.
+
+``` javascript
+metrics.mfilter( /active/i );
+```
+
+Note: filtering for metric names is case sensitive. Ignore case `/i` for case insensitive filtering.
+
+
+#### metrics.mget( [filter] )
+
+Returns metric specifications. The provided `filter` may be a `string` or a regular expression. If a metric does not have a specification, returns `null`. To return a single specification,
 
 ``` javascript
 metrics.mget( 'mem.swapSpaceUtilization' );
@@ -58,6 +70,13 @@ metrics.mget( 'cpu.utilization' );
 // returns null
 ```
 
+To return metric specifications matching a filter,
+
+``` javascript
+metrics.mget( /Active/i );
+// returns {...}
+```
+
 To return all metric specifications,
 
 ``` javascript
@@ -65,15 +84,8 @@ metrics.mget();
 // returns {"metric1":{...},"metric2":{...},...}
 ```
 
+Note: when using regular expression filters, beware of case sensitivity. If case does not matter, ignore case `/i`;
 
-#### metrics.dlist()
-
-Lists all devices known to have associated metric specifications.
-
-``` javascript
-metrics.dlist();
-// returns an array of device names
-```
 
 #### metrics.dexists( name )
 
@@ -86,6 +98,18 @@ metrics.dexists( 'ram' );
 metrics.dexists( 'eth0' );
 // returns false
 ```
+
+#### metrics.dlist()
+
+Lists all devices known to have associated metric specifications.
+
+``` javascript
+metrics.dlist();
+// returns an array of device names
+```
+
+Note: the returned list __may__ contain regular expressions. Regular expressions are included to account for platform variability.
+
 
 #### metrics.dget( [name] )
 
