@@ -37,6 +37,9 @@ metrics.mexists( 'cpu.utilization' );
 // returns false
 ```
 
+Note: method is __not__ case sensitive.
+
+
 #### metrics.mlist()
 
 Lists all metrics included in the specification.
@@ -55,7 +58,7 @@ Lists all metrics satisfying a regular express filter.
 metrics.mfilter( /active/i );
 ```
 
-Note: filtering for metric names is case sensitive. Ignore case `/i` for case insensitive filtering.
+Note: filtering for metric names __is__ case sensitive. Ignore case `/i` for case insensitive filtering.
 
 
 #### metrics.mget( [filter] )
@@ -84,7 +87,9 @@ metrics.mget();
 // returns {"metric1":{...},"metric2":{...},...}
 ```
 
-Note: when using regular expression filters, beware of case sensitivity. If case does not matter, ignore case `/i`;
+Note: when the filter is a `string`, the method is __not__ case sensitive.
+
+Note: when using regular expression filters, the method __is__ case sensitive. If case does not matter, ignore case `/i`;
 
 
 #### metrics.dexists( name )
@@ -117,7 +122,7 @@ Returns specifications associated with devices. If a device does not have associ
 
 ``` javascript
 metrics.dget( 'ram' );
-// returns {...}
+// returns {"metric0":{...},"metric1":{...},...}
 
 metrics.dget( 'eth0' );
 // returns null
