@@ -36,7 +36,8 @@
     "documentation",
     "specification",
     "spec",
-    "memory"
+    "memory",
+    "nodeprime"
   ],
   "bugs": {
     "url": "https://github.com/doc-metrix/memory-node/issues"
