@@ -1,6 +1,6 @@
 {
   "name": "doc-metrix-memory",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provides an API for doc-metrix memory performance metrics.",
   "author": {
     "name": "Athan Reines",
